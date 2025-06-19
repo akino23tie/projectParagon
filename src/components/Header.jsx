@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { FiSearch, FiShoppingCart } from "react-icons/fi";
+import { FiSearch, FiUser } from "react-icons/fi";
 import { FaGem } from "react-icons/fa";
 
 export default function Header() {
@@ -41,8 +41,8 @@ export default function Header() {
           <FiSearch className="text-xl" />
         </button>
         <button className="bg-hijau text-white px-4 py-2 rounded-full flex items-center space-x-2 hover:bg-green-700">
-          <FiShoppingCart className="text-lg" />
-          <span className="text-sm font-semibold">View Cart</span>
+          <FiUser className="text-lg" />
+          <span className="text-sm font-semibold">Guest View</span>
         </button>
       </div>
     </header>

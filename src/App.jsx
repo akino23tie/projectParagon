@@ -7,7 +7,7 @@ import Dashboard from "./pages/Dashboard";
 export default function App() {
   return (
     <Routes>
-      {/* Layout utama yang punya header dan sidebar */}
+      {/* Layout utama yang punya header*/}
       <Route path="/" element={<MainLayout />}>
         {/* Redirect dari root ke /products */}
         <Route index element={<Navigate to="/dashboard" replace />} />

@@ -1,4 +1,3 @@
-// PageHeader.jsx
 export default function PageHeader({ title, breadcrumb, children }) {
   const renderBreadcrumb = () => {
     if (typeof breadcrumb === "string") {

@@ -7,7 +7,7 @@ export default function Header() {
   const navLinkClass = ({ isActive }) => `px-4 py-2 rounded-md font-semibold transition ${isActive ? "text-hijau bg-green-200" : "text-gray-600 hover:text-hijau hover:bg-green-100"}`;
 
   return (
-    <header className="bg-white shadow-md px-6 py-4 flex items-center justify-between">
+    <header className="bg-white sshadow-md px-6 py-4 flex items-center justify-between">
       {/* Logo & Nav */}
       <div className="flex items-center space-x-10">
         <span className="text-2xl font-bold text-gray-900">

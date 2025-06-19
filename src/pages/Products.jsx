@@ -33,12 +33,14 @@ export default function Products() {
         )}
       </div>
 
-      <div className="flex flex-wrap justify-center gap-3 mb-8">
+      <div className="flex flex-wrap justify-center gap-6 mb-12">
         {productCategories.map((category, idx) => (
           <button
             key={idx}
             onClick={() => setSelectedCategory(category)}
-            className={`px-4 py-2 rounded-full border ${selectedCategory === category ? "bg-hijau text-white" : "bg-white text-black border-gray-300"} hover:shadow-lg transition`}
+            className={`btn rounded-full text-sm font-semibold px-6 py-3 shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 ${
+              selectedCategory === category ? "bg-hijau text-white border-hijau glass" : "bg-base-100 text-black border-gray-300 hover:bg-hijau hover:text-white hover:border-hijau hover:shadow-xl"
+            }`}
           >
             {category}
           </button>
