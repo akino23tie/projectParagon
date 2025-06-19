@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Wardah Lightening Day Cream",
+    "brand": "Wardah",
+    "price": "$10.50",
+    "image": "/img/WDH001.png",
+    "category": "Skincare"
+  },
+  {
+    "title": "Emina Hair Serum",
+    "brand": "Emina",
+    "price": "$7.80",
+    "image": "/img/EMN001.png",
+    "category": "Haircare"
+  },
+  {
+    "title": "Make Over Powerstay Matte Lip Cream",
+    "brand": "Make Over",
+    "price": "$12.00",
+    "image": "/img/MKV001.png",
+    "category": "Makeup"
+  },
+  {
+    "title": "Kahf Hair & Body Wash",
+    "brand": "Kahf",
+    "price": "$9.99",
+    "image": "/img/KHF.png",
+    "category": "Bath & Body"
+  }
+]

@@ -1,0 +1,212 @@
+[
+  {
+    "customerId": "CUST001",
+    "customerName": "Liam Donovan",
+    "email": "liam.donovan@example.com",
+    "phone": "142-395-7412",
+    "loyalty": "Gold"
+  },
+  {
+    "customerId": "CUST002",
+    "customerName": "Sophie Keller",
+    "email": "sophie.keller@inboxmail.com",
+    "phone": "193-902-3821",
+    "loyalty": "Gold"
+  },
+  {
+    "customerId": "CUST003",
+    "customerName": "Gavin Reyes",
+    "email": "gavin.reyes@demo.com",
+    "phone": "(215)462-8921x204",
+    "loyalty": "Gold"
+  },
+  {
+    "customerId": "CUST004",
+    "customerName": "Isla Monroe",
+    "email": "isla.monroe@sample.org",
+    "phone": "+1-221-349-7781x771",
+    "loyalty": "Silver"
+  },
+  {
+    "customerId": "CUST005",
+    "customerName": "Mason Gilbert",
+    "email": "mason.gilbert@myemail.net",
+    "phone": "090-284-1281x558",
+    "loyalty": "Silver"
+  },
+  {
+    "customerId": "CUST006",
+    "customerName": "Aria Foster",
+    "email": "aria.foster@example.net",
+    "phone": "+1-044-718-3021x927",
+    "loyalty": "Bronze"
+  },
+  {
+    "customerId": "CUST007",
+    "customerName": "Noah Ellis",
+    "email": "noah.ellis@mailzone.com",
+    "phone": "+1-912-648-2204x5629",
+    "loyalty": "Gold"
+  },
+  {
+    "customerId": "CUST008",
+    "customerName": "Mila Cross",
+    "email": "mila.cross@demo.net",
+    "phone": "+1-307-485-1137x1061",
+    "loyalty": "Bronze"
+  },
+  {
+    "customerId": "CUST009",
+    "customerName": "Jaxon Neal",
+    "email": "jaxon.neal@domain.com",
+    "phone": "182-639-5570",
+    "loyalty": "Bronze"
+  },
+  {
+    "customerId": "CUST010",
+    "customerName": "Avery Shields",
+    "email": "avery.shields@mailme.org",
+    "phone": "837-812-7713x402",
+    "loyalty": "Gold"
+  },
+  {
+    "customerId": "CUST011",
+    "customerName": "Lucas Griffin",
+    "email": "lucas.griffin@quickmail.net",
+    "phone": "071-345-0003",
+    "loyalty": "Gold"
+  },
+  {
+    "customerId": "CUST012",
+    "customerName": "Ellie Graham",
+    "email": "ellie.graham@gmail.com",
+    "phone": "8539162742",
+    "loyalty": "Gold"
+  },
+  {
+    "customerId": "CUST013",
+    "customerName": "Owen Banks",
+    "email": "owen.banks@cloudzone.com",
+    "phone": "+1-617-490-9811",
+    "loyalty": "Gold"
+  },
+  {
+    "customerId": "CUST014",
+    "customerName": "Zoe Whitaker",
+    "email": "zoe.whitaker@hotmail.com",
+    "phone": "(345)021-5587x3104",
+    "loyalty": "Gold"
+  },
+  {
+    "customerId": "CUST015",
+    "customerName": "Nolan Park",
+    "email": "nolan.park@hotmail.com",
+    "phone": "844-901-1224",
+    "loyalty": "Silver"
+  },
+  {
+    "customerId": "CUST016",
+    "customerName": "Lily Hartman",
+    "email": "lily.hartman@site.com",
+    "phone": "687-011-2385",
+    "loyalty": "Gold"
+  },
+  {
+    "customerId": "CUST017",
+    "customerName": "Leo Raymond",
+    "email": "leo.raymond@gmail.com",
+    "phone": "001-857-764-2910",
+    "loyalty": "Bronze"
+  },
+  {
+    "customerId": "CUST018",
+    "customerName": "Grace Nolan",
+    "email": "grace.nolan@mocksite.com",
+    "phone": "014.289.1260x401",
+    "loyalty": "Bronze"
+  },
+  {
+    "customerId": "CUST019",
+    "customerName": "Isaac Dean",
+    "email": "isaac.dean@yahoo.com",
+    "phone": "(601)789-3450",
+    "loyalty": "Bronze"
+  },
+  {
+    "customerId": "CUST020",
+    "customerName": "Chloe Winters",
+    "email": "chloe.winters@mail.com",
+    "phone": "3824519074",
+    "loyalty": "Gold"
+  },
+  {
+    "customerId": "CUST021",
+    "customerName": "Julian Marsh",
+    "email": "julian.marsh@hotmail.com",
+    "phone": "(921)754-2331x455",
+    "loyalty": "Bronze"
+  },
+  {
+    "customerId": "CUST022",
+    "customerName": "Layla Mendez",
+    "email": "layla.mendez@live.com",
+    "phone": "060.251.9132x200",
+    "loyalty": "Silver"
+  },
+  {
+    "customerId": "CUST023",
+    "customerName": "Adrian Drake",
+    "email": "adrian.drake@company.org",
+    "phone": "001-338-190-5591x3344",
+    "loyalty": "Bronze"
+  },
+  {
+    "customerId": "CUST024",
+    "customerName": "Hannah Beck",
+    "email": "hannah.beck@yahoo.com",
+    "phone": "+1-421-758-8891x300",
+    "loyalty": "Silver"
+  },
+  {
+    "customerId": "CUST025",
+    "customerName": "Micah Steele",
+    "email": "micah.steele@randommail.com",
+    "phone": "(999)921-1881x601",
+    "loyalty": "Silver"
+  },
+  {
+    "customerId": "CUST026",
+    "customerName": "Scarlett Holloway",
+    "email": "scarlett.holloway@service.net",
+    "phone": "001-105-621-7842",
+    "loyalty": "Bronze"
+  },
+  {
+    "customerId": "CUST027",
+    "customerName": "Elianna Walsh",
+    "email": "elianna.walsh@anymail.org",
+    "phone": "2909837721",
+    "loyalty": "Bronze"
+  },
+  {
+    "customerId": "CUST028",
+    "customerName": "Ezra Phelps",
+    "email": "ezra.phelps@demo.org",
+    "phone": "(877)215-4432x1224",
+    "loyalty": "Silver"
+  },
+  {
+    "customerId": "CUST029",
+    "customerName": "Brooklyn Hodge",
+    "email": "brooklyn.hodge@fastmail.com",
+    "phone": "(827)592-1982x022",
+    "loyalty": "Bronze"
+  },
+  {
+    "customerId": "CUST030",
+    "customerName": "Camden Herring",
+    "email": "camden.herring@mailbox.org",
+    "phone": "001-625-808-3129x512",
+    "loyalty": "Bronze"
+  }
+]
