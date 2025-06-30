@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
-
 import productsData from "../data/Products.json";
 import articlesData from "../data/Articles.json";
-import bookingsData from "../data/Bookings.json";
+import bookingsData from "../data/Booking.json";
 
 export default function Dashboard() {
   const [products, setProducts] = useState([]);
@@ -26,7 +25,7 @@ export default function Dashboard() {
 
   return (
     <div className="p-8 bg-white min-h-screen">
-      <h1 className="text-3xl font-bold mb-6">📊 Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
 
       {/* Contoh Ringkas */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10">

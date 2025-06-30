@@ -21,16 +21,16 @@ export default function Header() {
         <NavLink to="/products" className={navItemClass}>
           Product
         </NavLink>
-        <NavLink to="/contact" className={navItemClass}>
+        <NavLink to="/article" className={navItemClass}>
           Article
         </NavLink>
-        <NavLink to="/about" className={navItemClass}>
+        <NavLink to="/booking" className={navItemClass}>
           Booking
         </NavLink>
-        <NavLink to="/search" className={navItemClass}>
+        <NavLink to="/user-role" className={navItemClass}>
           User & Role
         </NavLink>
-        <NavLink to="/search" className={navItemClass}>
+        <NavLink to="/company-profile" className={navItemClass}>
           Company's Profile
         </NavLink>
       </nav>
