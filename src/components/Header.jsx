@@ -10,7 +10,7 @@ export default function Header() {
       {/* Logo */}
       <div className="flex items-center space-x-2">
         <FaGem className="text-xl text-black" />
-        <span className="text-lg font-semibold">Paragon</span>
+        <span className="text-lg font-semibold">Skinvia</span>
       </div>
 
       {/* Center Navigation */}
