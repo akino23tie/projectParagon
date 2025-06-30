@@ -31,7 +31,7 @@ export default function Header() {
           User & Role
         </NavLink>
         <NavLink to="/company-profile" className={navItemClass}>
-          Company's Profile
+          Profile Company
         </NavLink>
       </nav>
 
