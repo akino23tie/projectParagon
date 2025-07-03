@@ -1,27 +1,114 @@
 import { useEffect, useState } from "react";
-import products from "../data/Products.json"; // Asumsikan file berada di src/data
+import { supabase } from "../supabaseClient.js";
 
 export default function Products() {
+  const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All Products");
-  const [productsData, setProductsData] = useState([]);
+  const [formData, setFormData] = useState({
+    title: "",
+    brand: "",
+    price: "",
+    category: "Skincare",
+  });
+  const [editId, setEditId] = useState(null);
   const [quote, setQuote] = useState(null);
 
+  const productCategories = ["All Products", "Skincare", "Haircare", "Makeup", "Bath & Body"];
+
+  // Filter data sesuai kategori
+  const filteredProducts = selectedCategory === "All Products" ? products : products.filter((p) => p.category?.toLowerCase().trim() === selectedCategory.toLowerCase().trim());
+
+  // Fetch product dari Supabase
+  const fetchProducts = async () => {
+    const { data, error } = await supabase.from("products").select("*").order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("❌ Fetch error:", error.message);
+      return;
+    }
+
+    console.log("✅ Products fetched:", data);
+    setProducts(data);
+  };
+
+  // Fetch produk saat pertama load
   useEffect(() => {
-    setProductsData(products); // load dari JSON lokal
+    fetchProducts();
   }, []);
 
+  // Fetch quote motivasi dari API eksternal
   useEffect(() => {
-    fetch("https://zenquotes.io/api/random")
+    fetch("https://api.api-ninjas.com/v1/quotes")
       .then((res) => res.json())
       .then((data) => setQuote(data[0]))
       .catch((err) => console.error("Failed to load quote:", err));
   }, []);
 
-  const productCategories = ["All Products", "Skincare", "Haircare", "Makeup", "Bath & Body"];
-  const filteredProducts = selectedCategory === "All Products" ? productsData : productsData.filter((product) => product.category === selectedCategory);
+  // Debugging state
+  useEffect(() => {
+    console.log("📦 State: products", products);
+    console.log("🔍 Filtered:", filteredProducts);
+  }, [products, filteredProducts]);
+
+  // Submit form
+  const handleSubmit = async () => {
+    if (!formData.title || !formData.brand || !formData.price || !formData.category) {
+      alert("Please complete all fields.");
+      return;
+    }
+
+    const payload = {
+      ...formData,
+      category: formData.category.trim(),
+    };
+
+    console.log("📝 Form Data yang akan dikirim:", payload);
+
+    if (editId) {
+      const { error } = await supabase.from("products").update(payload).eq("id", editId);
+      if (error) {
+        console.error("❌ Update error:", error.message);
+        return;
+      }
+    } else {
+      const { data, error } = await supabase.from("products").insert([payload]);
+      if (error) {
+        console.error("❌ Insert error:", error.message);
+        return;
+      }
+      console.log("✅ Insert berhasil:", data);
+    }
+
+    // Reset form
+    setFormData({
+      title: "",
+      brand: "",
+      price: "",
+      category: "Skincare",
+    });
+    setEditId(null);
+    setSelectedCategory("All Products");
+    fetchProducts();
+  };
+
+  const handleDelete = async (id) => {
+    await supabase.from("products").delete().eq("id", id);
+    fetchProducts();
+  };
+
+  const handleEdit = (product) => {
+    setFormData({
+      title: product.title,
+      brand: product.brand,
+      price: product.price,
+      category: product.category,
+    });
+    setEditId(product.id);
+  };
 
   return (
     <div className="p-8 bg-white min-h-screen">
+      {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-5xl font-bold mb-4">Explore Our Products</h1>
         {quote ? (
@@ -33,32 +120,73 @@ export default function Products() {
         )}
       </div>
 
-      <div className="flex flex-wrap justify-center gap-6 mb-12">
-        {productCategories.map((category, idx) => (
+      {/* Form */}
+      <div className="max-w-xl mx-auto border rounded-lg p-6 mb-12 shadow">
+        <h2 className="text-xl font-semibold mb-4">{editId ? "Edit Product" : "Add Product"}</h2>
+        <input value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="Title" className="input input-bordered w-full mb-2" />
+        <input value={formData.brand} onChange={(e) => setFormData({ ...formData, brand: e.target.value })} placeholder="Brand" className="input input-bordered w-full mb-2" />
+        <input value={formData.price} onChange={(e) => setFormData({ ...formData, price: e.target.value })} placeholder="Price" className="input input-bordered w-full mb-2" />
+        <select value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} className="select select-bordered w-full mb-4">
+          {productCategories.slice(1).map((cat, i) => (
+            <option key={i}>{cat}</option>
+          ))}
+        </select>
+        <button onClick={handleSubmit} className="btn btn-success w-full">
+          {editId ? "Update" : "Add"} Product
+        </button>
+      </div>
+
+      {/* Category Filter */}
+      <div className="flex flex-wrap justify-center gap-4 mb-12">
+        {productCategories.map((cat, idx) => (
           <button
             key={idx}
-            onClick={() => setSelectedCategory(category)}
+            onClick={() => setSelectedCategory(cat)}
             className={`btn rounded-full text-sm font-semibold px-6 py-3 shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 ${
-              selectedCategory === category ? "bg-hijau text-white border-hijau glass" : "bg-base-100 text-black border-gray-300 hover:bg-hijau hover:text-white hover:border-hijau hover:shadow-xl"
+              selectedCategory === cat ? "bg-hijau text-white border-hijau glass" : "bg-base-100 text-black border-gray-300 hover:bg-hijau hover:text-white hover:border-hijau hover:shadow-xl"
             }`}
           >
-            {category}
+            {cat}
           </button>
         ))}
       </div>
 
+      {/* Products Grid */}
       {filteredProducts.length === 0 ? (
         <div className="text-center text-gray-500">Product is not found</div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredProducts.map((product, index) => (
-            <div key={index} className="border rounded-xl p-4 text-center hover:shadow-lg transition">
-              <img src={product.image} alt={product.title} className="w-full h-48 object-contain mb-4" />
-              <h3 className="font-semibold text-sm">{product.title}</h3>
-              <p className="text-xs text-gray-500">{product.brand}</p>
-              <p className="text-base font-semibold mt-2">{product.price}</p>
-            </div>
-          ))}
+        <div className="overflow-x-auto">
+          <table className="table table-zebra w-full">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Brand</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredProducts.map((product, index) => (
+                <tr key={product.id}>
+                  <td>{index + 1}</td>
+                  <td>{product.title}</td>
+                  <td>{product.brand}</td>
+                  <td>{product.price}</td>
+                  <td>{product.category}</td>
+                  <td className="flex gap-2">
+                    <button onClick={() => handleEdit(product)} className="btn btn-xs btn-warning">
+                      Edit
+                    </button>
+                    <button onClick={() => handleDelete(product.id)} className="btn btn-xs btn-error">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>

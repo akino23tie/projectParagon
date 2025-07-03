@@ -7,6 +7,7 @@ import Booking from "./pages/Booking";
 import UserAndRole from "./pages/UserAndRole";
 import CompanyProfile from "./pages/CompanyProfile";
 import NotFound from "./pages/NotFound";
+import Team from "./pages/Team";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="booking" element={<Booking />} />
         <Route path="user-role" element={<UserAndRole />} />
         <Route path="company-profile" element={<CompanyProfile />} />
+        <Route path="team" element={<Team />} />
       </Route>
 
       {/* Fallback jika route tidak ditemukan */}

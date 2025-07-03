@@ -33,6 +33,9 @@ export default function Header() {
         <NavLink to="/company-profile" className={navItemClass}>
           Profile Company
         </NavLink>
+        <NavLink to="/team" className={navItemClass}>
+          Team
+        </NavLink>
       </nav>
 
       {/* Search & Cart */}
