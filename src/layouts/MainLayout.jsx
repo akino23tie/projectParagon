@@ -1,15 +1,20 @@
-import Header from "../components/Header";
+import Header from "../components/Header"; // Sidebar
 import Footer from "../components/Footer";
 import { Outlet } from "react-router-dom";
 
 export default function MainLayout() {
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col">
+    <div className="bg-gray-100 min-h-screen flex">
+      {/* Sidebar */}
       <Header />
-      <main className="flex-1 pt-[96px] px-4 md:px-8 max-w-screen-xl mx-auto">
-        <Outlet />
-      </main>
-      <Footer />
+
+      {/* Main content */}
+      <div className="flex-1 min-h-screen pl-0">
+        <main className="p-6 ml-64">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

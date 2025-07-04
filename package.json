@@ -12,6 +12,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.50.3",
     "@tailwindcss/vite": "^4.0.14",
+    "axios": "^1.10.0",
     "chart.js": "^4.4.9",
     "daisyui": "^5.0.43",
     "react": "^19.0.0",

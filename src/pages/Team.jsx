@@ -1,15 +1,29 @@
+// Team.jsx
 import { useState, useEffect } from "react";
-import { supabase } from "../supabaseClient";
+import { teamAPI } from "../services/teamAPI";
 
 export default function Team() {
   const [team, setTeam] = useState([]);
-  const [formData, setFormData] = useState({ name: "", position: "", email: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    role: "",
+    email: "",
+    image: "",
+    bio: "",
+    university: "",
+    background: "",
+    experience: "",
+    skills: "",
+  });
   const [editId, setEditId] = useState(null);
 
   const fetchTeam = async () => {
-    const { data, error } = await supabase.from("team").select("*").order("created_at", { ascending: false });
-    if (error) console.error("Fetch error:", error.message);
-    else setTeam(data);
+    try {
+      const data = await teamAPI.fetchTeam();
+      setTeam(data);
+    } catch (error) {
+      console.error("Fetch error:", error.message);
+    }
   };
 
   useEffect(() => {
@@ -17,30 +31,78 @@ export default function Team() {
   }, []);
 
   const handleSubmit = async () => {
-    if (!formData.name || !formData.position || !formData.email) {
-      alert("Please fill all fields.");
+    const { name, role, email, image, bio, university, background, experience, skills } = formData;
+
+    if (!name || !role || !email) {
+      alert("Please fill all required fields.");
       return;
     }
 
-    if (editId) {
-      await supabase.from("team").update(formData).eq("id", editId);
-    } else {
-      await supabase.from("team").insert([formData]);
-    }
+    const details = {
+      university,
+      background,
+      experience,
+      skills: skills.split(",").map((s) => s.trim()),
+    };
 
-    setFormData({ name: "", position: "", email: "" });
-    setEditId(null);
-    fetchTeam();
+    const payload = {
+      name,
+      role,
+      email,
+      image,
+      bio,
+      details,
+    };
+
+    try {
+      if (editId) {
+        await teamAPI.updateTeam(editId, payload);
+      } else {
+        await teamAPI.createTeam(payload);
+      }
+
+      setFormData({
+        name: "",
+        role: "",
+        email: "",
+        image: "",
+        bio: "",
+        university: "",
+        background: "",
+        experience: "",
+        skills: "",
+      });
+      setEditId(null);
+      fetchTeam();
+    } catch (error) {
+      console.error("Submit error:", error.response?.data || error);
+    }
   };
 
   const handleEdit = (member) => {
-    setFormData({ name: member.name, position: member.position, email: member.email });
+    const { university = "", background = "", experience = "", skills = [] } = member.details || {};
+
+    setFormData({
+      name: member.name,
+      role: member.role,
+      email: member.email,
+      image: member.image || "",
+      bio: member.bio || "",
+      university,
+      background,
+      experience,
+      skills: skills.join(", "),
+    });
     setEditId(member.id);
   };
 
   const handleDelete = async (id) => {
-    await supabase.from("team").delete().eq("id", id);
-    fetchTeam();
+    try {
+      await teamAPI.deleteTeam(id);
+      fetchTeam();
+    } catch (error) {
+      console.error("Delete error:", error.message);
+    }
   };
 
   return (
@@ -48,13 +110,25 @@ export default function Team() {
       <h1 className="text-4xl font-bold text-center mb-8">Team Management</h1>
 
       {/* Form */}
-      <div className="max-w-md mx-auto mb-12 border p-6 rounded-lg shadow">
-        <h2 className="text-xl font-semibold mb-4">{editId ? "Edit Team Member" : "Add Team Member"}</h2>
-        <input className="input input-bordered w-full mb-2" placeholder="Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
-        <input className="input input-bordered w-full mb-2" placeholder="Position" value={formData.position} onChange={(e) => setFormData({ ...formData, position: e.target.value })} />
-        <input className="input input-bordered w-full mb-4" placeholder="Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
-        <button className="btn btn-primary w-full" onClick={handleSubmit}>
-          {editId ? "Update" : "Add"} Member
+      <div className="max-w-2xl mx-auto mb-12 border p-6 rounded-lg shadow">
+        <h2 className="text-xl font-semibold mb-4">{editId ? "Edit Member" : "Add New Member"}</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input className="input input-bordered w-full" placeholder="Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+          <input className="input input-bordered w-full" placeholder="Role" value={formData.role} onChange={(e) => setFormData({ ...formData, role: e.target.value })} />
+          <input className="input input-bordered w-full" placeholder="Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+          <input className="input input-bordered w-full" placeholder="Image URL" value={formData.image} onChange={(e) => setFormData({ ...formData, image: e.target.value })} />
+          <input className="input input-bordered w-full col-span-2" placeholder="Bio" value={formData.bio} onChange={(e) => setFormData({ ...formData, bio: e.target.value })} />
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input className="input input-bordered w-full" placeholder="University" value={formData.university} onChange={(e) => setFormData({ ...formData, university: e.target.value })} />
+          <input className="input input-bordered w-full" placeholder="Background" value={formData.background} onChange={(e) => setFormData({ ...formData, background: e.target.value })} />
+          <input className="input input-bordered w-full" placeholder="Experience" value={formData.experience} onChange={(e) => setFormData({ ...formData, experience: e.target.value })} />
+          <input className="input input-bordered w-full" placeholder="Skills (comma-separated)" value={formData.skills} onChange={(e) => setFormData({ ...formData, skills: e.target.value })} />
+        </div>
+
+        <button className="btn btn-primary w-full mt-6" onClick={handleSubmit}>
+          {editId ? "Update Member" : "Add Member"}
         </button>
       </div>
 
@@ -68,8 +142,11 @@ export default function Team() {
               <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Position</th>
+                <th>Role</th>
                 <th>Email</th>
+                <th>Bio</th>
+                <th>Image</th>
+                <th>Details</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -78,8 +155,26 @@ export default function Team() {
                 <tr key={member.id}>
                   <td>{index + 1}</td>
                   <td>{member.name}</td>
-                  <td>{member.position}</td>
+                  <td>{member.role}</td>
                   <td>{member.email}</td>
+                  <td>{member.bio}</td>
+                  <td>{member.image ? <img src={member.image} alt={member.name} className="w-12 h-12 rounded-full object-cover" /> : <span className="italic text-gray-500">No image</span>}</td>
+                  <td>
+                    <div className="text-sm space-y-1">
+                      <div>
+                        <strong>University:</strong> {member.details?.university || "-"}
+                      </div>
+                      <div>
+                        <strong>Background:</strong> {member.details?.background || "-"}
+                      </div>
+                      <div>
+                        <strong>Experience:</strong> {member.details?.experience || "-"}
+                      </div>
+                      <div>
+                        <strong>Skills:</strong> {(member.details?.skills || []).join(", ") || "-"}
+                      </div>
+                    </div>
+                  </td>
                   <td className="flex gap-2">
                     <button className="btn btn-xs btn-warning" onClick={() => handleEdit(member)}>
                       Edit
