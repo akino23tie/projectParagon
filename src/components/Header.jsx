@@ -3,7 +3,9 @@ import { FiGlobe, FiUser } from "react-icons/fi";
 
 export default function Header() {
   const navItemClass = ({ isActive }) =>
-    `block w-full text-left text-sm px-4 py-2 rounded-lg transition font-medium ${isActive ? "text-white" : "text-gray-700 hover:text-white hover:bg-red-400"} ${isActive ? "bg-[var(--color-hijau)]" : ""}`;
+    `block px-4 py-2 my-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+      isActive ? "text-white bg-gradient-to-r from-red-400 to-red-300 shadow-md" : "text-gray-700 hover:bg-gradient-to-r hover:from-red-100 hover:to-red-300"
+    }`;
 
   return (
     <aside className="fixed top-0 left-0 h-screen w-64 bg-white shadow-md flex flex-col justify-between z-50 border-r border-gray-200">
@@ -15,7 +17,7 @@ export default function Header() {
       </div>
 
       {/* Navigation Menu */}
-      <nav className="flex-1 px-4 py-6 overflow-y-auto">
+      <nav className="flex-1 px-4 py-6 overflow-y-auto bg-gradient-to-b from-white via-white to-pink-100">
         <NavLink to="/dashboard" className={navItemClass}>
           Dashboard
         </NavLink>
@@ -43,16 +45,21 @@ export default function Header() {
       </nav>
 
       {/* Tombol Guest */}
-      <div className="px-4 py-10 ">
-        <a href="https://project-rini.vercel.app/" target="_blank" rel="noopener noreferrer" className="w-full bg-hijau text-white px-4 py-2 rounded-full flex items-center justify-center space-x-2 hover:bg-red-400">
+      <div className="px-4 py-4 overflow-y-auto bg-gradient-to-b from-pink-100 via-white to-green-100 ">
+        <a
+          href="https://project-rini.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn w-full text-white bg-gradient-to-r from-red-500 to-red-400 border-none hover:from-red-400 hover:to-pink-400 transition-all duration-300"
+        >
           <FiGlobe className="text-lg" />
           <span className="text-sm font-semibold">Guest View</span>
         </a>
       </div>
 
       {/* Tombol Login */}
-      <div className="px-4 py-8 border-t border-gray-200">
-        <NavLink to="/auth/login" className="w-full bg-green-400 text-white px-4 py-2 rounded-full flex items-center justify-center space-x-2 hover:bg-green-600">
+      <div className="px-4 py-4 overflow-y-auto bg-gradient-to-b from-green-100 via-white to-green-200 ">
+        <NavLink to="/auth/login" className="btn w-full text-white bg-gradient-to-r from-red-400 to-green-600 border-none hover:from-green  -600 hover:to-green-300 transition-all duration-300">
           <FiUser className="text-lg" />
           <span className="text-sm font-semibold">Login</span>
         </NavLink>

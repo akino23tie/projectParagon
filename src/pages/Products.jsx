@@ -111,7 +111,7 @@ export default function Products() {
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-center mb-10" style={{ color: "var(--color-hijau)" }}>
-          Manajemen Produk
+          Product Management
         </h1>
       </div>
 
