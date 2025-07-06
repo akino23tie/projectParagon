@@ -2,13 +2,14 @@ export default function CompanyProfile() {
   const company = {
     name: "Skinvia Cosmetics",
     description: "Kami adalah brand lokal yang fokus pada skincare alami dan aman untuk semua jenis kulit.",
-    address: "Jl. Kecantikan No. 45, Jakarta",
-    phone: "0812-3456-7890",
-    email: "info@skinvia.co.id",
+    address: "Jl. Kembang Sari No. 45,Rumbai. Pekanbaru",
+    phone: "0822-8510-0306",
+    email: "skinvia@gmail.com",
     social: {
-      instagram: "@skinvia_id",
+      instagram: "@skinvia.id",
       facebook: "fb.com/skinvia",
     },
+    logo: "/images/logo-skinvia.png",
   };
 
   return (
@@ -24,6 +25,11 @@ export default function CompanyProfile() {
       </h1>
 
       <div className="max-w-xl mx-auto bg-white shadow-lg rounded-xl p-6 border border-gray-200">
+        {/* Logo Perusahaan */}
+        <div className="flex justify-center mb-6">
+          <img src="/img/logoSkinvia.png" alt="Logo Skinvia" className="w-28 h-12 object-contain rounded-md border border-gray-300 p-1 shadow-sm" />
+        </div>
+
         <dl className="space-y-4 text-sm">
           <div className="flex justify-between border-b pb-2">
             <dt className="font-semibold text-gray-600">Nama Perusahaan:</dt>

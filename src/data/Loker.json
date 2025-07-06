@@ -1,0 +1,23 @@
+[
+  {
+    "position": "Digital Marketing Specialist",
+    "company": "Skinvia Cosmetics",
+    "location": "Jakarta",
+    "description": "Bertanggung jawab atas strategi digital marketing, termasuk SEO, kampanye iklan, dan sosial media.",
+    "deadline": "31 Juli 2025"
+  },
+  {
+    "position": "Graphic Designer",
+    "company": "Skinvia Cosmetics",
+    "location": "Bandung",
+    "description": "Mendesain materi promosi seperti banner, poster, feed Instagram, dan konten visual lainnya.",
+    "deadline": "15 Agustus 2025"
+  },
+  {
+    "position": "Customer Service",
+    "company": "Skinvia Cosmetics",
+    "location": "Remote",
+    "description": "Melayani pertanyaan pelanggan via WhatsApp & Instagram dengan sopan dan informatif.",
+    "deadline": "10 Agustus 2025"
+  }
+]

@@ -15,6 +15,9 @@ import Register from "./pages/auth/Register";
 // Tambahkan ini
 import AuthLayout from "./layouts/AuthLayout";
 import Login from "./pages/auth/Login";
+import Loker from "./pages/Loker";
+import Faq from "./pages/Faq";
+import Contact from "./pages/Contact";
 
 export default function App() {
   return (
@@ -30,6 +33,9 @@ export default function App() {
         <Route path="company-profile" element={<CompanyProfile />} />
         <Route path="team" element={<Team />} />
         <Route path="testimoni" element={<Testimoni />} />
+        <Route path="loker" element={<Loker />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="faq" element={<Faq />} />
       </Route>
 
       {/* Route utk login*/}

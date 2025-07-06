@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Dina Rahma",
+    "email": "dina@yaho.com",
+    "subject": "Pertanyaan Produk",
+    "message": "Apakah produk ini cocok untuk kulit sensitif dan berjerawat?",
+    "date": "2025-07-06"
+  },
+  {
+    "name": "Arif Hidayat",
+    "email": "arif@mail.com",
+    "subject": "Kerja Sama Influencer",
+    "message": "Saya tertarik menjalin kerja sama review produk Skinvia di Instagram.",
+    "date": "2025-07-05"
+  },
+  {
+    "name": "Lia Novita",
+    "email": "lianvta@gmail.com",
+    "subject": "Keluhan Pengiriman",
+    "message": "Saya belum menerima pesanan saya padahal statusnya sudah dikirim.",
+    "date": "2025-07-03"
+  }
+]

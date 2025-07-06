@@ -42,6 +42,15 @@ export default function Header() {
         <NavLink to="/testimoni" className={navItemClass}>
           Testimoni
         </NavLink>
+        <NavLink to="/loker" className={navItemClass}>
+          Loker
+        </NavLink>
+        <NavLink to="/contact" className={navItemClass}>
+          Contact
+        </NavLink>
+        <NavLink to="/faq" className={navItemClass}>
+          FAQ
+        </NavLink>
       </nav>
 
       {/* Tombol Guest */}
