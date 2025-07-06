@@ -12,30 +12,48 @@ export default function CompanyProfile() {
   };
 
   return (
-    <div className="p-8 bg-white min-h-screen">
-      <h1 className="text-3xl font-bold mb-6">Company Profile</h1>
-      <div className="space-y-4 text-sm">
-        <p>
-          <strong>Nama:</strong> {company.name}
-        </p>
-        <p>
-          <strong>Deskripsi:</strong> {company.description}
-        </p>
-        <p>
-          <strong>Alamat:</strong> {company.address}
-        </p>
-        <p>
-          <strong>Telepon:</strong> {company.phone}
-        </p>
-        <p>
-          <strong>Email:</strong> {company.email}
-        </p>
-        <p>
-          <strong>Instagram:</strong> {company.social.instagram}
-        </p>
-        <p>
-          <strong>Facebook:</strong> {company.social.facebook}
-        </p>
+    <div
+      className="p-8 min-h-screen"
+      style={{
+        backgroundColor: "var(--color-latar)",
+        fontFamily: "var(--font-poppins)",
+      }}
+    >
+      <h1 className="text-4xl font-bold text-center mb-10" style={{ color: "var(--color-hijau)" }}>
+        Manajemen Profil Perusahaan
+      </h1>
+
+      <div className="max-w-xl mx-auto bg-white shadow-lg rounded-xl p-6 border border-gray-200">
+        <dl className="space-y-4 text-sm">
+          <div className="flex justify-between border-b pb-2">
+            <dt className="font-semibold text-gray-600">Nama Perusahaan:</dt>
+            <dd className="text-gray-800">{company.name}</dd>
+          </div>
+          <div className="flex justify-between border-b pb-2">
+            <dt className="font-semibold text-gray-600">Deskripsi:</dt>
+            <dd className="text-gray-800 text-right">{company.description}</dd>
+          </div>
+          <div className="flex justify-between border-b pb-2">
+            <dt className="font-semibold text-gray-600">Alamat:</dt>
+            <dd className="text-gray-800">{company.address}</dd>
+          </div>
+          <div className="flex justify-between border-b pb-2">
+            <dt className="font-semibold text-gray-600">Telepon:</dt>
+            <dd className="text-gray-800">{company.phone}</dd>
+          </div>
+          <div className="flex justify-between border-b pb-2">
+            <dt className="font-semibold text-gray-600">Email:</dt>
+            <dd className="text-gray-800">{company.email}</dd>
+          </div>
+          <div className="flex justify-between border-b pb-2">
+            <dt className="font-semibold text-gray-600">Instagram:</dt>
+            <dd className="text-gray-800">{company.social.instagram}</dd>
+          </div>
+          <div className="flex justify-between">
+            <dt className="font-semibold text-gray-600">Facebook:</dt>
+            <dd className="text-gray-800">{company.social.facebook}</dd>
+          </div>
+        </dl>
       </div>
     </div>
   );

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Maya Caem",
+    "date": "10 Juni 2025",
+    "image": "/images/users/nadia.jpg",
+    "review": "Saya sangat puas dengan produk Skinvia! Kulit saya menjadi lebih halus dan cerah hanya dalam beberapa minggu pemakaian."
+  },
+  {
+    "name": "Mamat",
+    "date": "22 Mei 2025",
+    "image": "/images/users/rahmat.jpg",
+    "review": "Pelayanannya cepat dan ramah. Produk dikemas dengan sangat rapi dan aman. Akan beli lagi!"
+  },
+  {
+    "name": "Ica Goks",
+    "date": "1 Juli 2025",
+    "image": "/images/users/laras.jpg",
+    "review": "Aromanya enak banget dan tidak membuat kulit iritasi. Cocok untuk kulit sensitif seperti saya!"
+  }
+]

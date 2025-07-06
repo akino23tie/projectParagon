@@ -1,15 +1,15 @@
-import articles from "../data/Articles.json";
+import testimoni from "../data/Testimoni.json";
 
-export default function Article() {
+export default function Testimoni() {
   return (
     <div className="p-8 min-h-screen" style={{ backgroundColor: "var(--color-latar)", fontFamily: "var(--font-poppins)" }}>
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-10" style={{ color: "var(--color-hijau)" }}>
-          Manajemen Artikel
+          Testimoni Pelanggan
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {articles.map((article, index) => (
+          {testimoni.map((item, index) => (
             <div
               key={index}
               className="p-6 rounded-xl shadow-sm hover:shadow-lg border transition-all duration-300"
@@ -20,20 +20,20 @@ export default function Article() {
                 fontFamily: "var(--font-barlow)",
               }}
             >
-              <h2 className="text-xl font-semibold mb-2 line-clamp-2" style={{ color: "var(--color-teks)" }}>
-                {article.title}
-              </h2>
-              <p className="text-sm mb-2" style={{ color: "var(--color-teks-samping)" }}>
-                {article.date}
-              </p>
-              <p className="text-sm text-justify line-clamp-4" style={{ color: "var(--color-teks)" }}>
-                {article.content}
-              </p>
-              <div className="mt-4 text-right">
-                <button className="text-sm font-medium hover:underline" style={{ color: "var(--color-hijau)" }}>
-                  Baca Selengkapnya →
-                </button>
+              <div className="flex items-center mb-4">
+                <img src={item.image} alt={item.name} className="w-12 h-12 rounded-full object-cover mr-4" />
+                <div>
+                  <h3 className="text-base font-semibold" style={{ color: "var(--color-hijau)" }}>
+                    {item.name}
+                  </h3>
+                  <p className="text-sm" style={{ color: "var(--color-teks-samping)" }}>
+                    {item.date}
+                  </p>
+                </div>
               </div>
+              <p className="text-sm text-justify line-clamp-5" style={{ color: "var(--color-teks)" }}>
+                "{item.review}"
+              </p>
             </div>
           ))}
         </div>

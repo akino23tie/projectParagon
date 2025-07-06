@@ -1,4 +1,3 @@
-// Team.jsx
 import { useState, useEffect } from "react";
 import { teamAPI } from "../services/teamAPI";
 
@@ -106,12 +105,17 @@ export default function Team() {
   };
 
   return (
-    <div className="p-8 min-h-screen bg-white">
-      <h1 className="text-4xl font-bold text-center mb-8">Team Management</h1>
+    <div className="p-8 min-h-screen" style={{ backgroundColor: "var(--color-latar)", fontFamily: "var(--font-poppins)" }}>
+      <h1 className="text-4xl font-bold text-center mb-10" style={{ color: "var(--color-hijau)" }}>
+        Manajemen Team
+      </h1>
 
       {/* Form */}
-      <div className="max-w-2xl mx-auto mb-12 border p-6 rounded-lg shadow">
-        <h2 className="text-xl font-semibold mb-4">{editId ? "Edit Member" : "Add New Member"}</h2>
+      <div className="max-w-2xl mx-auto mb-12 border-l-4 p-6 rounded-lg shadow" style={{ borderColor: "#fff", backgroundColor: "#fff" }}>
+        <h2 className="text-xl font-semibold mb-4" style={{ color: "var(--color-teks)" }}>
+          {editId ? "Edit Member" : "Add New Member"}
+        </h2>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <input className="input input-bordered w-full" placeholder="Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
           <input className="input input-bordered w-full" placeholder="Role" value={formData.role} onChange={(e) => setFormData({ ...formData, role: e.target.value })} />
@@ -127,7 +131,7 @@ export default function Team() {
           <input className="input input-bordered w-full" placeholder="Skills (comma-separated)" value={formData.skills} onChange={(e) => setFormData({ ...formData, skills: e.target.value })} />
         </div>
 
-        <button className="btn btn-primary w-full mt-6" onClick={handleSubmit}>
+        <button className="btn w-full mt-6 bg-[var(--color-hijau)] text-white hover:bg-red-400 transition-colors duration-200" onClick={handleSubmit}>
           {editId ? "Update Member" : "Add Member"}
         </button>
       </div>
@@ -136,50 +140,64 @@ export default function Team() {
       {team.length === 0 ? (
         <p className="text-center text-gray-500">No team members found.</p>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="table w-full">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Role</th>
-                <th>Email</th>
-                <th>Bio</th>
-                <th>Image</th>
-                <th>Details</th>
-                <th>Actions</th>
+        <div className="overflow-x-auto shadow rounded-xl border" style={{ borderColor: "var(--color-garis)" }}>
+          <table className="table w-full overflow-hidden rounded-xl">
+            <thead style={{ backgroundColor: "var(--color-hijau)", color: "#fff" }}>
+              <tr className="text-center text-sm font-semibold">
+                <th className="py-3 px-4">#</th>
+                <th className="py-3 px-4">Name</th>
+                <th className="py-3 px-4">Role</th>
+                <th className="py-3 px-4">Email</th>
+                <th className="py-3 px-4">Bio</th>
+                <th className="py-3 px-4">Image</th>
+                <th className="py-3 px-4">Details</th>
+                <th className="py-3 px-4">Actions</th>
               </tr>
             </thead>
             <tbody>
               {team.map((member, index) => (
-                <tr key={member.id}>
-                  <td>{index + 1}</td>
-                  <td>{member.name}</td>
-                  <td>{member.role}</td>
-                  <td>{member.email}</td>
-                  <td>{member.bio}</td>
-                  <td>{member.image ? <img src={member.image} alt={member.name} className="w-12 h-12 rounded-full object-cover" /> : <span className="italic text-gray-500">No image</span>}</td>
-                  <td>
-                    <div className="text-sm space-y-1">
-                      <div>
-                        <strong>University:</strong> {member.details?.university || "-"}
-                      </div>
-                      <div>
-                        <strong>Background:</strong> {member.details?.background || "-"}
-                      </div>
-                      <div>
-                        <strong>Experience:</strong> {member.details?.experience || "-"}
-                      </div>
-                      <div>
-                        <strong>Skills:</strong> {(member.details?.skills || []).join(", ") || "-"}
-                      </div>
+                <tr key={member.id} className="text-center hover:bg-gray-50">
+                  <td className="p-3">{index + 1}</td>
+                  <td className="p-3">{member.name}</td>
+                  <td className="p-3">{member.role}</td>
+                  <td className="p-3">{member.email}</td>
+                  <td className="p-3">{member.bio}</td>
+                  <td className="p-3">
+                    {member.image ? <img src={member.image} alt={member.name} className="w-12 h-12 rounded-full object-cover ring-2" style={{ borderColor: "var(--color-hijau)" }} /> : <span className="italic text-gray-500">No image</span>}
+                  </td>
+                  <td className="p-3 text-sm text-left">
+                    <div>
+                      <strong>University:</strong> {member.details?.university || "-"}
+                    </div>
+                    <div>
+                      <strong>Background:</strong> {member.details?.background || "-"}
+                    </div>
+                    <div>
+                      <strong>Experience:</strong> {member.details?.experience || "-"}
+                    </div>
+                    <div>
+                      <strong>Skills:</strong> {(member.details?.skills || []).join(", ") || "-"}
                     </div>
                   </td>
-                  <td className="flex gap-2">
-                    <button className="btn btn-xs btn-warning" onClick={() => handleEdit(member)}>
+                  <td className="p-3 flex gap-2 justify-center">
+                    <button
+                      className="btn btn-xs"
+                      style={{
+                        backgroundColor: "var(--color-kuning)",
+                        color: "#fff",
+                      }}
+                      onClick={() => handleEdit(member)}
+                    >
                       Edit
                     </button>
-                    <button className="btn btn-xs btn-error" onClick={() => handleDelete(member.id)}>
+                    <button
+                      className="btn btn-xs"
+                      style={{
+                        backgroundColor: "var(--color-merah)",
+                        color: "#fff",
+                      }}
+                      onClick={() => handleDelete(member.id)}
+                    >
                       Delete
                     </button>
                   </td>

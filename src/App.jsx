@@ -8,6 +8,7 @@ import UserAndRole from "./pages/UserAndRole";
 import CompanyProfile from "./pages/CompanyProfile";
 import NotFound from "./pages/NotFound";
 import Team from "./pages/Team";
+import Testimoni from "./pages/Testimoni";
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="user-role" element={<UserAndRole />} />
         <Route path="company-profile" element={<CompanyProfile />} />
         <Route path="team" element={<Team />} />
+        <Route path="testimoni" element={<Testimoni />} />
       </Route>
 
       {/* Fallback jika route tidak ditemukan */}

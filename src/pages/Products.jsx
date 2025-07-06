@@ -107,17 +107,12 @@ export default function Products() {
   };
 
   return (
-    <div className="p-8 bg-white min-h-screen">
+    <div className="p-8 min-h-screen" style={{ backgroundColor: "var(--color-latar)", fontFamily: "var(--font-poppins)" }}>
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-5xl font-bold mb-4">Explore Our Products</h1>
-        {quote ? (
-          <p className="text-gray-700 max-w-2xl mx-auto italic">
-            "{quote.q}" — <span className="font-medium">{quote.a}</span>
-          </p>
-        ) : (
-          <p className="text-gray-400 animate-pulse">Loading quote...</p>
-        )}
+        <h1 className="text-4xl font-bold text-center mb-10" style={{ color: "var(--color-hijau)" }}>
+          Manajemen Produk
+        </h1>
       </div>
 
       {/* Form */}
@@ -131,7 +126,16 @@ export default function Products() {
             <option key={i}>{cat}</option>
           ))}
         </select>
-        <button onClick={handleSubmit} className="btn btn-success w-full">
+        <button
+          onClick={handleSubmit}
+          className="btn w-full text-white"
+          style={{
+            backgroundColor: "var(--color-hijau)",
+            borderColor: "var(--color-hijau)",
+          }}
+          onMouseOver={(e) => (e.target.style.backgroundColor = "#f87171")}
+          onMouseOut={(e) => (e.target.style.backgroundColor = "var(--color-hijau)")}
+        >
           {editId ? "Update" : "Add"} Product
         </button>
       </div>
