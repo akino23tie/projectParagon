@@ -13,7 +13,9 @@ export default function MainLayout() {
         <main className="p-6 ml-64">
           <Outlet />
         </main>
-        <Footer />
+        <div className="ml-64">
+          <Footer />
+        </div>
       </div>
     </div>
   );
