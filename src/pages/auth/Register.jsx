@@ -56,8 +56,8 @@ export default function Register() {
 
       {/* Back to Login Link */}
       <div className="mt-4 text-center">
-        <NavLink to="/login" className="text-sm text-gray-600 hover:text-green-600">
-          Already have an account? Back to Login
+        <NavLink to="/auth/login" className="text-sm text-gray-600 hover:text-green-600">
+          Sudah punya akun? Kembali ke Login
         </NavLink>
       </div>
     </div>

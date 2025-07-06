@@ -3,14 +3,14 @@ import { NavLink } from "react-router-dom";
 export default function Forgot() {
   return (
     <div>
-      <h2 className="text-2xl font-semibold text-gray-700 mb-2 text-center">Forgot Your Password?</h2>
+      <h2 className="text-2xl font-semibold text-gray-700 mb-2 text-center">Lupa Password?</h2>
 
-      <p className="text-sm text-gray-500 mb-6 text-center">Enter your email address and we'll send you a link to reset your password.</p>
+      <p className="text-sm text-gray-500 mb-6 text-center">Masukkan email anda dan kami akan mengirim link untuk reset password.</p>
 
       <form>
         <div className="mb-5">
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-            Email Address
+            Alamat Email
           </label>
           <input
             type="email"
@@ -25,16 +25,16 @@ export default function Forgot() {
           className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4
                         rounded-lg transition duration-300"
         >
-          Send Reset Link
+          Kirim Link Reset
         </button>
       </form>
 
       <div className="mt-4 text-center">
-        <NavLink to="/login" className="text-sm text-gray-600 hover:text-green-600 mr-4">
-          Back to Login
+        <NavLink to="/auth/login" className="text-sm text-green-400 hover:text-green-600 mr-4">
+          Kembali ke Login
         </NavLink>
-        <NavLink to="/register" className="text-sm text-gray-600 hover:text-green-600">
-          Back to Register
+        <NavLink to="/auth/register" className="text-sm text-green-400 hover:text-green-600">
+          Kembali ke Register
         </NavLink>
       </div>
     </div>

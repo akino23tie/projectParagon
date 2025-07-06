@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { FiUser } from "react-icons/fi";
+import { FiGlobe, FiUser } from "react-icons/fi";
 
 export default function Header() {
   const navItemClass = ({ isActive }) =>
@@ -42,12 +42,20 @@ export default function Header() {
         </NavLink>
       </nav>
 
-      {/* Bottom Guest Info */}
-      <div className="px-4 py-5 border-t border-gray-200">
-        <button className="w-full bg-hijau text-white px-4 py-2 rounded-full flex items-center justify-center space-x-2 hover:bg-red-400">
-          <FiUser className="text-lg" />
+      {/* Tombol Guest */}
+      <div className="px-4 py-10 ">
+        <a href="https://project-rini.vercel.app/" target="_blank" rel="noopener noreferrer" className="w-full bg-hijau text-white px-4 py-2 rounded-full flex items-center justify-center space-x-2 hover:bg-red-400">
+          <FiGlobe className="text-lg" />
           <span className="text-sm font-semibold">Guest View</span>
-        </button>
+        </a>
+      </div>
+
+      {/* Tombol Login */}
+      <div className="px-4 py-8 border-t border-gray-200">
+        <NavLink to="/auth/login" className="w-full bg-green-400 text-white px-4 py-2 rounded-full flex items-center justify-center space-x-2 hover:bg-green-600">
+          <FiUser className="text-lg" />
+          <span className="text-sm font-semibold">Login</span>
+        </NavLink>
       </div>
     </aside>
   );

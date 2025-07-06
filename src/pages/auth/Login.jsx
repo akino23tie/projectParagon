@@ -72,7 +72,7 @@ export default function Login() {
   ) : null;
   return (
     <div>
-      <h2 className="text-2xl font-semibold text-gray-700 mb-6 text-center">Welcome Back 👋</h2>
+      <h2 className="text-2xl font-semibold text-gray-700 mb-6 text-center">Welcome back, Skinviers!</h2>
       {errorInfo}
 
       {loadingInfo}
@@ -109,10 +109,10 @@ export default function Login() {
           Login
         </button>
         <div className="flex justify-between text-sm">
-          <button type="button" onClick={() => navigate("/Forgot")} className="text-green-500 hover:underline">
-            Forgot Password?
+          <button type="button" onClick={() => navigate("/auth/forgot")} className="text-green-500 hover:underline">
+            Lupa Password?
           </button>
-          <button type="button" onClick={() => navigate("/Register")} className="text-green-500 hover:underline">
+          <button type="button" onClick={() => navigate("/auth/register")} className="text-green-500 hover:underline">
             Register
           </button>
         </div>
