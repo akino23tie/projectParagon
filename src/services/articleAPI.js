@@ -1,6 +1,4 @@
-// src/services/faqAPI.js
-
-const API_URL = "https://osehidqtykjpezkyqwoz.supabase.co/rest/v1/faq";
+const API_URL = "https://osehidqtykjpezkyqwoz.supabase.co/rest/v1/article";
 
 const headers = {
   apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zZWhpZHF0eWtqcGV6a3lxd296Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk1ODkxNzQsImV4cCI6MjA2NTE2NTE3NH0.phA8FFoBMPJ76XmkpP-QaYBvvVjoysXR7Scal4j881A",
@@ -9,8 +7,8 @@ const headers = {
   Prefer: "return=representation",
 };
 
-export const faqAPI = {
-  fetchFaqs: async () => {
+export const articleAPI = {
+  fetchArticles: async () => {
     const res = await fetch(API_URL, {
       method: "GET",
       headers,
@@ -19,7 +17,7 @@ export const faqAPI = {
     return await res.json();
   },
 
-  createFaq: async (payload) => {
+  createArticle: async (payload) => {
     const res = await fetch(API_URL, {
       method: "POST",
       headers,
@@ -27,14 +25,14 @@ export const faqAPI = {
     });
     if (!res.ok) {
       const error = await res.json();
-      console.error("Create FAQ error:", error);
+      console.error("Create Article error:", error);
       throw error;
     }
     const result = await res.json();
     return result[0];
   },
 
-  updateFaq: async (id, payload) => {
+  updateArticle: async (id, payload) => {
     const res = await fetch(`${API_URL}?id=eq.${id}`, {
       method: "PATCH",
       headers,
@@ -44,7 +42,7 @@ export const faqAPI = {
     return await res.json();
   },
 
-  deleteFaq: async (id) => {
+  deleteArticle: async (id) => {
     const res = await fetch(`${API_URL}?id=eq.${id}`, {
       method: "DELETE",
       headers,

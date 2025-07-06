@@ -1,114 +1,65 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
+import { loginUser } from "../../services/authAPI";
 import { BsFillExclamationDiamondFill } from "react-icons/bs";
 import { ImSpinner2 } from "react-icons/im";
 
 export default function Login() {
-  /* navigate, state & handleChange*/
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [dataForm, setDataForm] = useState({
-    email: "",
-    password: "",
-  });
+  const [form, setForm] = useState({ email: "", password: "" });
 
-  const handleChange = (evt) => {
-    const { name, value } = evt.target;
-    setDataForm({
-      ...dataForm,
-      [name]: value,
-    });
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  /* process form */
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setLoading(true);
-    setError(false);
+    setError("");
 
-    axios
-      .post("https://dummyjson.com/user/login", {
-        username: dataForm.email,
-        password: dataForm.password,
-      })
-      .then((response) => {
-        // Jika status bukan 200, tampilkan pesan error
-        if (response.status !== 200) {
-          setError(response.data.message);
-          return;
-        }
+    const { data, error: queryError } = await loginUser(form.email, form.password);
 
-        // Redirect ke dashboard jika login sukses
-        navigate("/");
-      })
-      .catch((err) => {
-        if (err.response) {
-          setError(err.response.data.message || "An error occurred");
-        } else {
-          setError(err.message || "An unknown error occurred");
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    if (queryError || !data) {
+      setError("Email atau password salah.");
+    } else {
+      // Simpan user ke localStorage agar bisa ditampilkan di sidebar/header
+      localStorage.setItem("user", JSON.stringify(data));
+      navigate("/"); // login berhasil
+    }
+
+    setLoading(false);
   };
 
-  /* error & loading status */
-  const errorInfo = error ? (
-    <div className="bg-red-200 mb-5 p-5 text-sm font-light text-gray-600 rounded flex items-center">
-      <BsFillExclamationDiamondFill className="text-red-600 me-2 text-lg" />
-      {error}
-    </div>
-  ) : null;
-
-  const loadingInfo = loading ? (
-    <div className="bg-gray-200 mb-5 p-5 text-sm rounded flex items-center">
-      <ImSpinner2 className="me-2 animate-spin" />
-      Mohon Tunggu...
-    </div>
-  ) : null;
   return (
     <div>
       <h2 className="text-2xl font-semibold text-gray-700 mb-6 text-center">Welcome back, Skinviers!</h2>
-      {errorInfo}
-
-      {loadingInfo}
+      {error && (
+        <div className="bg-red-200 mb-5 p-5 text-sm text-gray-600 rounded flex items-center">
+          <BsFillExclamationDiamondFill className="text-red-600 me-2 text-lg" />
+          {error}
+        </div>
+      )}
+      {loading && (
+        <div className="bg-gray-200 mb-5 p-5 text-sm rounded flex items-center">
+          <ImSpinner2 className="me-2 animate-spin" />
+          Mohon Tunggu...
+        </div>
+      )}
       <form onSubmit={handleSubmit}>
         <div className="mb-5">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-          <input
-            type="text"
-            id="email"
-            className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm
-                            placeholder-gray-400"
-            placeholder="you@example.com"
-            name="email"
-            onChange={handleChange}
-          />
+          <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <input type="email" name="email" onChange={handleChange} required className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm" placeholder="you@example.com" />
         </div>
         <div className="mb-6">
           <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-          <input
-            type="password"
-            id="password"
-            className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm
-                            placeholder-gray-400"
-            placeholder="********"
-            name="password"
-            onChange={handleChange}
-          />
+          <input type="password" name="password" onChange={handleChange} required className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm" placeholder="********" />
         </div>
-        <button
-          type="submit"
-          className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4
-                        rounded-lg transition duration-300"
-        >
+        <button type="submit" disabled={loading} className="w-full bg-green-500 text-white font-semibold py-2 px-4 rounded-lg">
           Login
         </button>
-        <div className="flex justify-between text-sm">
+        <div className="flex justify-between text-sm mt-4">
           <button type="button" onClick={() => navigate("/auth/forgot")} className="text-green-500 hover:underline">
             Lupa Password?
           </button>

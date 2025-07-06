@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, LineChart, Line, PieChart, Pie, Cell } from "recharts";
 import { FiBox, FiFileText, FiCalendar, FiUsers } from "react-icons/fi";
+import Quote from "../components/Quotes";
 
 export default function Dashboard() {
   const [products, setProducts] = useState([]);
@@ -8,10 +9,8 @@ export default function Dashboard() {
   const [bookings, setBookings] = useState([]);
   const [logins, setLogins] = useState([]);
   const [pieData, setPieData] = useState([]);
-  const [quote, setQuote] = useState(null);
 
   useEffect(() => {
-    // Data dummy
     setProducts(Array.from({ length: 45 }, (_, i) => ({ id: i + 1, name: `Produk ${i + 1}` })));
     setArticles(Array.from({ length: 23 }, (_, i) => ({ id: i + 1, title: `Artikel ${i + 1}` })));
     setBookings(Array.from({ length: 12 }, (_, i) => ({ id: i + 1, date: `2024-06-${i + 1}` })));
@@ -31,44 +30,24 @@ export default function Dashboard() {
       { name: "Seluler", value: 28, color: "#10b981" },
       { name: "Tablet", value: 7, color: "#f59e0b" },
     ]);
-
-    fetch("https://zenquotes.io/")
-      .then((res) => res.json())
-      .then((data) => {
-        setQuote({ q: data.content, a: data.author });
-      })
-      .catch((err) => {
-        console.error("Gagal memuat kutipan:", err);
-      });
   }, []);
 
   const totalVisitors = logins.reduce((acc, item) => acc + item.logins, 0);
 
   return (
     <div className="p-8 min-h-screen" style={{ backgroundColor: "var(--color-latar)", fontFamily: "var(--font-poppins)" }}>
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div>
-              <h1 className="text-4xl font-bold mb-5" style={{ color: "var(--color-hijau)" }}>
-                Dashboard
-              </h1>
-              {quote ? (
-                <p className="text-gray-600 mt-1 italic">
-                  "{quote.q}" — <span className="font-medium">{quote.a}</span>
-                </p>
-              ) : (
-                <p className="text-gray-400 mt-1 max-w-xl mx-auto">The only way to produce the best work is to love what you do</p>
-              )}
-            </div>
-            <div className="flex items-center space-x-4"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-6">
+          <div>
+            <h1 className="text-4xl font-bold mb-5" style={{ color: "var(--color-hijau)" }}>
+              Dashboard
+            </h1>
+            <Quote />
           </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Kartu Statistik */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <StatCard label="Total Produk" value={products.length} icon={<FiBox />} />
           <StatCard label="Total Artikel" value={articles.length} icon={<FiFileText />} />
@@ -76,7 +55,6 @@ export default function Dashboard() {
           <StatCard label="Pengunjung Mingguan" value={totalVisitors} icon={<FiUsers />} />
         </div>
 
-        {/* Bagian Grafik */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           <ChartCard title="Ringkasan Aktivitas Mingguan" subtitle="Interaksi dan keterlibatan pengguna">
             <ResponsiveContainer width="100%" height={300}>
@@ -150,8 +128,30 @@ export default function Dashboard() {
                   return value;
                 }}
               />
-              <Line type="monotone" dataKey="logins" stroke="#3b82f6" strokeWidth={3} dot={{ fill: "#3b82f6", strokeWidth: 2, r: 4 }} name="Login Pengguna" />
-              <Line type="monotone" dataKey="bookings" stroke="#10b981" strokeWidth={3} dot={{ fill: "#10b981", strokeWidth: 2, r: 4 }} name="Booking" />
+              <Line
+                type="monotone"
+                dataKey="logins"
+                stroke="#3b82f6"
+                strokeWidth={3}
+                dot={{
+                  fill: "#3b82f6",
+                  strokeWidth: 2,
+                  r: 4,
+                }}
+                name="Login Pengguna"
+              />
+              <Line
+                type="monotone"
+                dataKey="bookings"
+                stroke="#10b981"
+                strokeWidth={3}
+                dot={{
+                  fill: "#10b981",
+                  strokeWidth: 2,
+                  r: 4,
+                }}
+                name="Booking"
+              />
             </LineChart>
           </ResponsiveContainer>
         </ChartCard>

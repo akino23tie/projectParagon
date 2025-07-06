@@ -1,6 +1,4 @@
-// src/services/faqAPI.js
-
-const API_URL = "https://osehidqtykjpezkyqwoz.supabase.co/rest/v1/faq";
+const API_URL = "https://osehidqtykjpezkyqwoz.supabase.co/rest/v1/userandrole";
 
 const headers = {
   apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zZWhpZHF0eWtqcGV6a3lxd296Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk1ODkxNzQsImV4cCI6MjA2NTE2NTE3NH0.phA8FFoBMPJ76XmkpP-QaYBvvVjoysXR7Scal4j881A",
@@ -9,8 +7,8 @@ const headers = {
   Prefer: "return=representation",
 };
 
-export const faqAPI = {
-  fetchFaqs: async () => {
+export const userAndRoleAPI = {
+  fetchUser: async () => {
     const res = await fetch(API_URL, {
       method: "GET",
       headers,
@@ -19,22 +17,24 @@ export const faqAPI = {
     return await res.json();
   },
 
-  createFaq: async (payload) => {
+  createUser: async (payload) => {
     const res = await fetch(API_URL, {
       method: "POST",
       headers,
       body: JSON.stringify([payload]),
     });
+
     if (!res.ok) {
       const error = await res.json();
-      console.error("Create FAQ error:", error);
-      throw error;
+      console.error("Create User error:", error);
+      throw new Error(error.message || JSON.stringify(error)); // <- perbaikan
     }
+
     const result = await res.json();
     return result[0];
   },
 
-  updateFaq: async (id, payload) => {
+  updateUser: async (id, payload) => {
     const res = await fetch(`${API_URL}?id=eq.${id}`, {
       method: "PATCH",
       headers,
@@ -44,7 +44,7 @@ export const faqAPI = {
     return await res.json();
   },
 
-  deleteFaq: async (id) => {
+  deleteUser: async (id) => {
     const res = await fetch(`${API_URL}?id=eq.${id}`, {
       method: "DELETE",
       headers,

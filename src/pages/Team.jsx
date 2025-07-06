@@ -198,7 +198,7 @@ export default function Team() {
                       }}
                       onClick={() => handleDelete(member.id)}
                     >
-                      Delete
+                      Hapus
                     </button>
                   </td>
                 </tr>
