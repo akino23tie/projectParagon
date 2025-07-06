@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="max-w-screen-xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center">
         <p>&copy; {new Date().getFullYear()} Skinvia. All rights reserved.</p>
         <div className="flex space-x-4 mt-2 md:mt-0">
-          <a href="/about" className="hover:underline">
+          <a href="/company-profile" className="hover:underline">
             About
           </a>
           <a href="/contact" className="hover:underline">
