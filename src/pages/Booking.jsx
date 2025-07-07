@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { bookingAPI } from "../services/bookingAPI";
+import { bookingAPI } from "../services/bookingapi";
 import { FiEdit2, FiPlus, FiTrash } from "react-icons/fi";
 
 export default function Booking() {
