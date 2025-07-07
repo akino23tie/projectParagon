@@ -12,7 +12,6 @@ import Testimoni from "./pages/Testimoni";
 import Forgot from "./pages/auth/Forgot";
 import Register from "./pages/auth/Register";
 
-// Tambahkan ini
 import AuthLayout from "./layouts/AuthLayout";
 import Login from "./pages/auth/Login";
 import Loker from "./pages/Loker";
