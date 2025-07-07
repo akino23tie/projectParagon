@@ -101,7 +101,7 @@ export default function Booking() {
           <button type="submit" className="btn w-full col-span-2 mt-4 bg-[var(--color-hijau)] text-white hover:bg-red-400 transition">
             {editId ? (
               <span className="flex items-center gap-2">
-                <FiEdit2 /> Update Booking
+                <FiEdit2 /> Perbarui Booking
               </span>
             ) : (
               <span className="flex items-center gap-2">
