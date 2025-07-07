@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { userAndRoleAPI } from "../services/userandrole";
+import { userandroleAPI } from "../services/userandrole";
 
 export default function Userandrole() {
   const [users, setUsers] = useState([]);

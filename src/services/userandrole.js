@@ -7,7 +7,7 @@ const headers = {
   Prefer: "return=representation",
 };
 
-export const userAndRoleAPI = {
+export const userandroleAPI = {
   fetchUser: async () => {
     const res = await fetch(API_URL, {
       method: "GET",
